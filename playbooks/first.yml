@@ -1,0 +1,17 @@
+---
+- name: Configure my Unikraft servers
+  hosts: unikraft
+  become: false
+
+  tasks:
+    - name: Create demo directory
+      ansible.builtin.file:
+        path: /opt/ansible-demo
+        state: directory
+        mode: "0755"
+
+    - name: Create a demo file
+      ansible.builtin.copy:
+        content: "Hello from Ansible!\n"
+        dest: /opt/ansible-demo/hello.txt
+        mode: "0644"
