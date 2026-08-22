@@ -1,0 +1,50 @@
+
+---
+
+- name: Learn Ansible variables
+  hosts: unikraft
+
+  vars:
+    app_name: "my-demo-app"
+    app_port: 8080
+    app_environment: "development"
+
+  tasks:
+    - name: show application configuration
+      ansible.builtin.debug:
+        msg: "Application {{ app_name }} runs on (prt {{ app_port }}"
+
+    - name: Show operating system 
+      ansible.builtin.debug:
+        msg: "This server is runnig {{ ansible_distribution }}"
+
+    - name: Show memory 
+      ansible.builtin.debug:
+        msg: "this server has {{ ansible_memtotal_mb }} MB RAM"
+
+    - name: Confirm Debian
+      ansible.builtin.debug:
+        msg: "This is a Debian server"
+      when: ansible_distribution == "Debian"
+
+    - name: Create demo directory 
+      ansible.builtin.file:
+        path: /opt/ansible-demo
+        state: directory
+        mode: "0755"
+
+    - name: Create demo log files
+      ansible.builtin.file:
+        path: "/opt/ansible-demo/{{ item }}"
+        state: touch
+        mode: "0644"
+      loop:
+        - app.log
+        - error.log
+        - access.log
+
+    - name: Generate application configuration
+      ansible.builtin.template:
+        src: ../templates/app.conf.j2
+        dest: /opt/ansible-demo/app.conf
+        mode: "0644"
