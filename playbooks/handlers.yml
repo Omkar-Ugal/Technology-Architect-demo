@@ -1,0 +1,21 @@
+---
+- name: Learn Ansible handlers
+  hosts: unikraft
+
+  vars:
+    app_name: "my-demo-app"
+    app_port: 8080
+    app_environment: "development"
+
+  tasks:
+    - name: Generate application configuration
+      ansible.builtin.template:
+        src: ../templates/app.conf.j2
+        dest: /opt/ansible-demo/app.conf
+        mode: "0644"
+      notify: Configuration changed
+
+  handlers:
+    - name: Configuration changed
+      ansible.builtin.debug:
+        msg: "Application configuration changed!"
