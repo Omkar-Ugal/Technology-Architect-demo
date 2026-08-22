@@ -1,0 +1,13 @@
+---
+- name: Create role demo directory
+  ansible.builtin.file:
+    path: /opt/ansible-role-demo
+    state: directory
+    mode: "0755"
+
+- name: Create role demo file
+  ansible.builtin.copy:
+    content: "Configured by Ansible role!\n"
+    dest: /opt/ansible-role-demo/hello.txt
+    mode: "0644"
+

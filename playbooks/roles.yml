@@ -1,0 +1,7 @@
+---
+- name: Learn Ansible roles
+  hosts: unikraft
+
+  roles:
+    - demo
+
