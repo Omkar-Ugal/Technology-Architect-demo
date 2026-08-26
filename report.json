@@ -1,0 +1,16 @@
+[
+  {
+    "name": "debian-ssh-1",
+    "state": "running",
+    "health": "healthy",
+    "ssh": "healthy",
+    "system": "OS=\"Debian GNU/Linux 12 (bookworm)\"\nCPU=1\nMEMORY=1.7Gi\nDISK=1.4G"
+  },
+  {
+    "name": "debian-ssh-2",
+    "state": "running",
+    "health": "healthy",
+    "ssh": "healthy",
+    "system": "OS=\"Debian GNU/Linux 12 (bookworm)\"\nCPU=1\nMEMORY=1.7Gi\nDISK=1.4G"
+  }
+]

@@ -1,0 +1,17 @@
+---
+- name: Bootstrap Unikraft instances
+  hosts: unikraft
+  gather_facts: false
+
+  tasks:
+    - name: Install Python 3
+      ansible.builtin.raw: apt-get update && apt-get install -y python3
+
+    - name: Verify Python
+      ansible.builtin.command: python3 --version
+      register: python_version
+      changed_when: false
+
+    - name: Show Python version
+      ansible.builtin.debug:
+        var: python_version.stdout
